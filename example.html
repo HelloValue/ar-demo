@@ -123,7 +123,7 @@
             <a-entity
                 obj-model="obj: #arrow;"
                 scale="0.5 0.5 0.5"
-                position="100 -100 0"
+                position="0 0 0"
                 rotation="-90 0 0"
                 id="obj01"
                 gesture-handler="minScale: 0.25; maxScale: 10"
@@ -131,57 +131,7 @@
                                 easing: easeInSine; loop: true; to: 50 -100 0"
             >
             </a-entity>
-            <!-- 文字 -->
-            <a-plane
-                rotation="180 0 0"
-                width="100"
-                height="100"
-                src="#groundTexture"
-                repeat="10 10"
-            >
-            </a-plane>
-            <a-entity
-                text-geometry="value:follow me;"
-                material="color: blue;"
-                position="-100 0 -10"
-                rotation="180 0 0"
-                scale="50 50 50"
-                id="obj02"
-                event-set_click="_event:click;material.color:blue"
-            >
-            </a-entity>
-            <!-- 图片 -->
-            <a-entity
-                geometry="primitive: plane;"
-                material="src:#img01"
-                position="0 -202 -105"
-                rotation="-90 0 0"
-                scale="200 200 200"
-                id="cover01"
-                animation="property: scale;dir: alternate; dur: 1000;
-                                easing: easeInSine; loop: true; to: 100 100 100 "
-            >
-            </a-entity>
         </a-nft>
-        <a-marker preset="hiro">
-            <!-- we use cors proxy to avoid cross-origin problems -->
-            <!--
-              ⚠️⚠️⚠️
-              https://arjs-cors-proxy.herokuapp.com/ is now offline, Heroku has dismissed all his free plans from November 2022.
-              You need to host your own proxy and use it instead. The proxy is based on CORS Anywhere (see https://github.com/Rob--W/cors-anywhere).
-              ⚠️⚠️⚠️
-            -->
-            <a-entity
-            text-geometry="value:follow me;"
-            material="color: red;"
-            position="100 100 100"
-            rotation="180 0 0"
-            scale="50 50 50"
-            id="obj03"
-            event-set_click="_event:click;material.color:blue"
-        >
-        </a-entity>
-          </a-marker>
         <!-- static camera that moves according to the device movemenents -->
         <a-entity camera> <a-cursor color="#FAFAFA"></a-cursor></a-entity>
     </a-scene>
