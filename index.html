@@ -26,9 +26,39 @@
         //     }, 3000);
         // };
     </script>
+    <style>
+        .buttons {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 0.25em;
+            border-radius: 4px;
+            border: none;
+            background: white;
+            color: black;
+            width: 4em;
+            height: 2em;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 
 <body style="margin: 0px; overflow: hidden">
+    <div class="buttons">
+        <button class="btn" id="prevStep">上一步</button>
+
+        <button class="btn" id="nextStep">下一步</button>
+    </div>
     <!-- a-scene defines the scene that we are agoing to use. After arjs= there are various options that can be customized  -->
     <!-- depending on your needs. For now just stick with these ones -->
     <a-scene embedded arjs>
@@ -51,6 +81,7 @@
                 position="0 0.5 0"
                 scale="1 1 1"
                 rotation="0 0 0"
+                id="box1"
             ></a-entity>
 
             <a-text
@@ -63,22 +94,17 @@
                 event-set_click="_event:click;material.color:blue"
             >
             </a-text>
-            <a-cylinder
-                geometry="primitive: cylinder; height: 0.5; radius: 0.1"
+            <a-text
+                value="step 2 :open the box;"
+                color="blue"
+                position="0 1.1 -1"
                 rotation="-90 0 0"
-                position="0 1 1"
-                material="color:yellow"
+                scale="0 0 0"
+                id="text2"
+                event-set_click="_event:click;material.color:blue"
             >
-                <a-text
-                    value="next"
-                    scale="1 1 1"
-                    position="0.3 0 0"
-                    id="text2"
-                    color="yellow"
-                    event-set_click="_event:click;material.color:blue"
-                >
-                </a-text>
-            </a-cylinder>
+            </a-text>
+          
 
             <!-- 医生模型 -->
             <a-entity
@@ -86,9 +112,19 @@
                 rotation="-180 0 0"
                 position="0 2.5 -0.5"
                 scale="1 1 1"
-                id="obj01"
+                id="arrow1"
                 animation="property: position;dir: alternate; dur: 300;
                                 easing: easeInSine; loop: true; to: 0 3 -0.5"
+            >
+            </a-entity>
+            <a-entity
+                gltf-model="#arrow"
+                rotation="90 0 0"
+                position="0 1 -1.2"
+                scale="0 0 0"
+                id="arrow2"
+                animation="property: position;dir: alternate; dur: 300;
+                                easing: easeInSine; loop: true; to: 0 1 -1.5"
             >
             </a-entity>
         </a-marker>
@@ -97,10 +133,29 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
-        document
-            .querySelector('#text2')
-            .addEventListener('click', function (params) {
-                alert(2222222222);
-            });
+        let domNext = document.getElementById('nextStep');
+        let domPrev = document.getElementById('prevStep');
+        let box1 = document.getElementById('box1');
+        let text1 = document.getElementById('text1');
+        let text2 = document.getElementById('text2');
+        let arrow1 = document.getElementById('arrow1');
+        let arrow2 = document.getElementById('arrow2');
+        let index=0
+        domNext.addEventListener('click', function (params) {
+            index+=1
+            if(index>1)return index=1
+            arrow1.setAttribute('scale', '0 0 0');
+            text1.setAttribute('scale', '0 0 0');
+            arrow2.setAttribute('scale', '1 1 1'); 
+            text2.setAttribute('scale', '1 1 1'); 
+        });
+        domPrev.addEventListener('click', function (params) {
+            index-=1
+            if(index<0)return index=0
+            arrow1.setAttribute('scale', '1 1 1');
+            text1.setAttribute('scale', '1 1 1');
+            arrow2.setAttribute('scale', '0 0 0'); 
+            text2.setAttribute('scale', '0 0 0'); 
+        });
     </script>
 </body>
