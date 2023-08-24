@@ -121,7 +121,7 @@
             <!-- 医生模型 -->
             <a-entity
                 obj-model="obj: #arrow;"
-                scale="2.5 2.5 2.5"
+                scale="0.5 0.5 0.5"
                 position="100 -100 0"
                 rotation="-90 0 0"
                 id="obj01"
@@ -162,7 +162,7 @@
             >
             </a-entity>
         </a-nft>
-        <a-marker preset="hiro" type="pattern" url="https://hellovalue.github.io/ar-demo/patts/pattern-AR-1.patt">
+        <a-marker preset="hiro">
             <!-- we use cors proxy to avoid cross-origin problems -->
             <!--
               ⚠️⚠️⚠️
@@ -173,10 +173,10 @@
             <a-entity
             text-geometry="value:follow me;"
             material="color: red;"
-            position="-100 0 -10"
+            position="100 100 100"
             rotation="180 0 0"
             scale="50 50 50"
-            id="obj02"
+            id="obj03"
             event-set_click="_event:click;material.color:blue"
         >
         </a-entity>
