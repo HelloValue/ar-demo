@@ -1,0 +1,197 @@
+<!--
+ * @Author: yangchao
+ * @Date: 2023-08-16 15:18:17
+ * @LastEditors: yangchao yangchao@kgcure.com
+ * @LastEditTime: 2023-08-18 16:20:55
+ * @Description: 这里是描述
+-->
+<head>
+    <title>罗氏诊断_AR助手呀</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<!-- <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script> -->
+<script src="lib/aframe.min.js"></script>
+<script src="lib/aframe-ar-nft.js"></script>
+<script src="lib/aframe-ar.js"></script>
+<!-- 旋转 -->
+<script src="gestures.js"></script>
+<!-- 3d文字 -->
+<script src="lib/aframe-text-geometry-component.min.js"></script>
+<!-- 动画组件 -->
+<script src="lib/aframe-animation-component.min.js"></script>
+<!-- 事件组件 -->
+<script src="lib/aframe-event-set-component.min.js"></script>
+<!-- style for the loader -->
+<style>
+    .arjs-loader {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+    }
+</style>
+
+<body style="margin: 0px; overflow: hidden">
+    <button>aaaa</button>
+    <script>
+        AFRAME.registerComponent('change-color-on-hover', {
+            schema: {
+                color: {default: 'red'}
+            },
+            init: function () {
+                var data = this.data;
+                var el = this.el; // <a-box>
+                var defaultColor = el.getAttribute('material').color;
+                el.addEventListener('mouseenter', function () {
+                    el.setAttribute('material.color', data.color);
+                });
+                el.addEventListener('mouseleave', function () {
+                    el.setAttribute('material.color', defaultColor);
+                });
+            }
+        });
+    </script>
+    <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+    <div class="arjs-loader">
+        <div>正在加载AR模型，请稍候...</div>
+    </div>
+
+    <!-- a-frame scene -->
+    <a-scene
+        vr-mode-ui="enabled: false;"
+        gesture-detector
+        renderer="logarithmicDepthBuffer: true;"
+        embedded
+        arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+        id="app-scene"
+    >
+        <!-- 图片训练后文件路径，不带文件拓展名！ -->
+        <a-assets>
+            <!-- 医生3d模型 -->
+            <a-asset-item
+                id="arrow"
+                src="model/arrow/Arrow.obj"
+            ></a-asset-item>
+            <!-- 字体 -->
+            <!-- <a-asset-item
+                id="font_first"
+                src="assets/machine01/machine01_01-msdf.json"
+            ></a-asset-item>
+            <a-asset-item
+                id="font02"
+                src="assets/machine01/machine01_02-msdf.json"
+            ></a-asset-item>
+            <a-asset-item
+                id="font03"
+                src="assets/machine01/machine01_03-msdf.json"
+            ></a-asset-item> -->
+            <!-- 图片 -->
+            <img id="img01" src="model/machine01/order01.png" />
+            <img id="img02" src="model/machine01/order02.png" />
+            <img id="img03" src="model/machine01/order03.png" />
+            <img
+                id="groundTexture"
+                src="https://cdn.aframe.io/a-painter/images/floor.jpg"
+            />
+            <img
+                id="skyTexture"
+                src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg"
+            />
+        </a-assets>
+        <a-nft
+            type="nft"
+            url="ar-demo/nft/machine01/machine01"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5"
+        >
+            <!-- 医生模型 -->
+            <a-entity
+                obj-model="obj: #arrow;"
+                scale="0.5 0.5 0.5"
+                position="100 -100 0"
+                rotation="-90 0 0"
+                id="obj01"
+                gesture-handler="minScale: 0.25; maxScale: 10"
+                animation="property: position;dir: alternate; dur: 1000;
+                                easing: easeInSine; loop: true; to: 50 -100 0"
+            >
+            </a-entity>
+            <!-- 文字 -->
+            <a-plane
+                rotation="180 0 0"
+                width="100"
+                height="100"
+                src="#groundTexture"
+                repeat="10 10"
+            >
+            </a-plane>
+            <a-entity
+                text-geometry="value:follow me;"
+                material="color: blue;"
+                position="-100 0 -10"
+                rotation="180 0 0"
+                scale="50 50 50"
+                id="obj02"
+                event-set_click="_event:click;material.color:blue"
+            >
+            </a-entity>
+            <!-- 图片 -->
+            <a-entity
+                geometry="primitive: plane;"
+                material="src:#img01"
+                position="0 -202 -105"
+                rotation="-90 0 0"
+                scale="200 200 200"
+                id="cover01"
+                animation="property: scale;dir: alternate; dur: 1000;
+                                easing: easeInSine; loop: true; to: 100 100 100 "
+            >
+            </a-entity>
+        </a-nft>
+        <a-marker preset="hiro">
+            <!-- we use cors proxy to avoid cross-origin problems -->
+            <!--
+              ⚠️⚠️⚠️
+              https://arjs-cors-proxy.herokuapp.com/ is now offline, Heroku has dismissed all his free plans from November 2022.
+              You need to host your own proxy and use it instead. The proxy is based on CORS Anywhere (see https://github.com/Rob--W/cors-anywhere).
+              ⚠️⚠️⚠️
+            -->
+            <a-entity
+            text-geometry="value:follow me;"
+            material="color: red;"
+            position="100 100 100"
+            rotation="180 0 0"
+            scale="50 50 50"
+            id="obj03"
+            event-set_click="_event:click;material.color:blue"
+        >
+        </a-entity>
+          </a-marker>
+        <!-- static camera that moves according to the device movemenents -->
+        <a-entity camera> <a-cursor color="#FAFAFA"></a-cursor></a-entity>
+    </a-scene>
+    <script>
+        let img01 = document.querySelector('#cover01');
+        let i = 0;
+        setInterval(() => {
+            i++;
+            if (i > 3) i = 1;
+            img01.setAttribute('material', {src: `#img0${i}`});
+        }, 5 * 1000);
+    </script>
+</body>
