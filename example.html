@@ -13,6 +13,7 @@
 <!-- <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script> -->
 <script src="lib/aframe.min.js"></script>
 <script src="lib/aframe-ar-nft.js"></script>
+<script src="lib/aframe-ar.js"></script>
 <!-- 旋转 -->
 <script src="gestures.js"></script>
 <!-- 3d文字 -->
@@ -44,6 +45,7 @@
 </style>
 
 <body style="margin: 0px; overflow: hidden">
+    <button>aaaa</button>
     <script>
         AFRAME.registerComponent('change-color-on-hover', {
             schema: {
@@ -80,8 +82,8 @@
         <a-assets>
             <!-- 医生3d模型 -->
             <a-asset-item
-                id="doctor"
-                src="model/machine01/doctor.obj"
+                id="arrow"
+                src="model/arrow/Arrow.obj"
             ></a-asset-item>
             <!-- 字体 -->
             <!-- <a-asset-item
@@ -111,7 +113,7 @@
         </a-assets>
         <a-nft
             type="nft"
-            url="ar-demo/nft/machine01/machine01"
+            url="ar-demo/nft/patt-ar-1/pattern-AR-1"
             smooth="true"
             smoothCount="10"
             smoothTolerance=".01"
@@ -119,7 +121,7 @@
         >
             <!-- 医生模型 -->
             <a-entity
-                obj-model="obj: #doctor;"
+                obj-model="obj: #arrow;"
                 scale="0.5 0.5 0.5"
                 position="100 -100 0"
                 rotation="-90 0 0"
@@ -132,15 +134,15 @@
             <!-- 文字 -->
             <a-plane
                 rotation="180 0 0"
-                width="300"
-                height="300"
+                width="100"
+                height="100"
                 src="#groundTexture"
                 repeat="10 10"
             >
             </a-plane>
             <a-entity
                 text-geometry="value:follow me;"
-                material="color: red;"
+                material="color: blue;"
                 position="-100 0 -10"
                 rotation="180 0 0"
                 scale="50 50 50"
@@ -161,7 +163,25 @@
             >
             </a-entity>
         </a-nft>
-
+        <a-marker preset="hiro">
+            <!-- we use cors proxy to avoid cross-origin problems -->
+            <!--
+              ⚠️⚠️⚠️
+              https://arjs-cors-proxy.herokuapp.com/ is now offline, Heroku has dismissed all his free plans from November 2022.
+              You need to host your own proxy and use it instead. The proxy is based on CORS Anywhere (see https://github.com/Rob--W/cors-anywhere).
+              ⚠️⚠️⚠️
+            -->
+            <a-entity
+            text-geometry="value:follow me;"
+            material="color: red;"
+            position="100 100 100"
+            rotation="180 0 0"
+            scale="50 50 50"
+            id="obj03"
+            event-set_click="_event:click;material.color:blue"
+        >
+        </a-entity>
+          </a-marker>
         <!-- static camera that moves according to the device movemenents -->
         <a-entity camera> <a-cursor color="#FAFAFA"></a-cursor></a-entity>
     </a-scene>
