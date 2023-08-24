@@ -1,23 +1,12 @@
 <html>
     <script src="lib/aframe.min.js"></script>
     <script src="lib/aframe-ar.js"></script>
-  <body style="margin : 0px; overflow: hidden;">
-    <a-scene embedded arjs>
-      <a-marker preset="hiro">
-        <!-- we use cors proxy to avoid cross-origin problems -->
-        <!--
-          ⚠️⚠️⚠️
-          https://arjs-cors-proxy.herokuapp.com/ is now offline, Heroku has dismissed all his free plans from November 2022.
-          You need to host your own proxy and use it instead. The proxy is based on CORS Anywhere (see https://github.com/Rob--W/cors-anywhere).
-          ⚠️⚠️⚠️
-        -->
-        <a-entity
-        text-geometry="value:follow me;"
-        material="color: red;"
-    >
-    </a-entity>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
+    <body style='margin : 0px; overflow: hidden;'>
+        <a-scene embedded arjs renderer='precision: medium;'>
+            <a-marker preset="hiro">
+                <a-cone position='0 0.5 0' rotation="0 0 0" radius-bottom="0.5" material='opacity: 0.75; color: red;'></a-cone>
+            </a-marker>
+            <a-entity camera></a-entity>
+        </a-scene>
+    </body>
 </html>
