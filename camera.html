@@ -10,7 +10,6 @@
         pzBtn = document.getElementById("btn_snap"),
         context = canvas.getContext("2d"),
         video = document.getElementById("video");
-    alert('该页面会调用您的摄像头')
     // 旧版本浏览器可能根本不支持mediaDevices，我们首先设置一个空对象
     if (navigator.mediaDevices === undefined) {
         navigator.mediaDevices = {};
