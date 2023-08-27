@@ -64,26 +64,16 @@
     <a-scene embedded arjs>
         <assets>
             <!-- 医生3d模型 -->
-            <a-asset-item id="arrow" src="model/gltf/arrow.gltf"></a-asset-item>
+            <a-asset-item id="arrow" src="model/gltf/Red Arrow.gltf"></a-asset-item>
         </assets>
         <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
         <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
         <a-marker
             preset="custom"
             type="pattern"
-            url="assets/markers/step1.patt"
+            url="patts/pattern-AR-1.patt"
         >
             <!-- Here we define the content to show on the marker when it gets detected: a unit cube that lies on the floor and that is red -->
-
-            <a-entity
-                geometry="primitive: box; width: 2; height: 1; depth: 1;"
-                material="color:gray"
-                position="0 0.5 0"
-                scale="1 1 1"
-                rotation="0 0 0"
-                id="box1"
-            ></a-entity>
-
             <a-text
                 value="step 1 :open the box;"
                 color="blue"
@@ -104,9 +94,8 @@
                 event-set_click="_event:click;material.color:blue"
             >
             </a-text>
-          
 
-            <!-- 医生模型 -->
+            <!-- model -->
             <a-entity
                 gltf-model="#arrow"
                 rotation="-180 0 0"
