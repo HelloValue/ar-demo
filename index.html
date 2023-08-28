@@ -81,7 +81,7 @@
             <!--第一步-->
             <a-entity
                 gltf-model="#arrow"
-                rotation="0 0 0"
+                rotation="-90 0 0"
                 position="0 2.5 -0.5"
                 scale="1 1 1"
                 id="arrow1"
@@ -90,7 +90,7 @@
             >
             </a-entity>
             <a-text
-                value="第一步：请向上打开分杯模块前门"
+                value="step1: open the box"
                 color="blue"
                 position="0 1.1 0"
                 rotation="-90 0 0"
@@ -111,7 +111,7 @@
             >
             </a-entity>
             <a-text
-                value="第二步：请用六角扳手拆掉螺钉，拆开分杯模块前面板"
+                value="step2 : handler "
                 color="blue"
                 position="-2 1.1 -1"
                 rotation="-90 0 0"
@@ -132,7 +132,7 @@
                 >
             </a-entity>
             <a-text
-                value="第三步：将卡住的分杯管放平，点击Repeat"
+                value="step3: fixed"
                 color="blue"
                 position="-2 1.1 -1"
                 rotation="-90 0 0"
@@ -168,17 +168,21 @@
             text3.setAttribute('visibility', 'hiden'); 
         });
         domStep2.addEventListener('click', function (params) {
-            arrow1.setAttribute('scale', '1 1 1');
-            text1.setAttribute('scale', '1 1 1');
-            arrow2.setAttribute('scale', '0 0 0'); 
-            text2.setAttribute('scale', '0 0 0'); 
+            arrow2.setAttribute('visibility', 'visible');
+            text2.setAttribute('visibility', 'visible');
+            arrow1.setAttribute('visibility', 'hiden'); 
+            text1.setAttribute('visibility', 'hiden'); 
+            arrow3.setAttribute('visibility', 'hiden'); 
+            text3.setAttribute('visibility', 'hiden'); 
         });
 
         domStep3.addEventListener('click', function (params) {
-            arrow1.setAttribute('', '1 1 1');
-            text1.setAttribute('scale', '1 1 1');
-            arrow2.setAttribute('scale', '0 0 0'); 
-            text2.setAttribute('scale', '0 0 0'); 
+            arrow3.setAttribute('visibility', 'visible');
+            text3.setAttribute('visibility', 'visible');
+            arrow2.setAttribute('visibility', 'hiden'); 
+            text2.setAttribute('visibility', 'hiden'); 
+            arrow1.setAttribute('visibility', 'hiden'); 
+            text1.setAttribute('visibility', 'hiden'); 
         });
 
     </script>
