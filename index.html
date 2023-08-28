@@ -64,7 +64,7 @@
     <a-scene embedded arjs>
         <assets>
             <!-- 医生3d模型 -->
-            <a-asset-item id="arrow" src="model/gltf/arrow.gltf"></a-asset-item>
+            <a-asset-item id="arrow" src="assets/models/arrow/Arrow.obj"></a-asset-item>
         </assets>
         <!-- Defines the marker that we are going to use. Notice that we are not providing the image file, but the  -->
         <!-- "compiled" .patt file that we got from the online tool. the marker MUST BE ACCESSIBLE VIA HTTPS -->
@@ -77,7 +77,7 @@
 
             <a-nft
             type="nft"
-            url="ar-demo/nft/step1/1-open-box"
+            url="ar-demo/assets/nfts/1-open-box/1-open-box"
             smooth="true"
             smoothCount="10"
             smoothTolerance=".01"
@@ -126,7 +126,7 @@
                                 easing: easeInSine; loop: true; to: 0 1 -1.5"
             >
             </a-entity>
-        </a-marker>
+        </a-nft>
 
         <!-- Define the camera of the scene -->
         <a-entity camera></a-entity>
