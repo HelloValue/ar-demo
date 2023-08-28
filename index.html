@@ -76,8 +76,19 @@
             <!-- Here we define the content to show on the marker when it gets detected: a unit cube that lies on the floor and that is red -->
 
             <a-marker preset='custom' type='pattern' url='assets/patts/pattern-AR-1.patt'>
+            <!--第一步-->
+            <a-entity
+                gltf-model="#arrow"
+                rotation="0 0 0"
+                position="0 2.5 -0.5"
+                scale="1 1 1"
+                id="arrow1"
+                animation="property: position;dir: alternate; dur: 300;
+                                easing: easeInSine; loop: true; to: 0 3 -0.5"
+            >
+            </a-entity>
             <a-text
-                value="step 1 :open the box;"
+                value="第一步：请向上打开分杯模块前门"
                 color="blue"
                 position="0 1.1 0"
                 rotation="-90 0 0"
@@ -86,37 +97,49 @@
                 event-set_click="_event:click;material.color:blue"
             >
             </a-text>
-            <a-text
-                value="step 2 :open the box;"
-                color="blue"
-                position="0 1.1 -1"
-                rotation="-90 0 0"
-                scale="0 0 0"
-                id="text2"
-                event-set_click="_event:click;material.color:blue"
-            >
-            </a-text>
-          
+            <!--第二步-->
             <a-entity
                 gltf-model="#arrow"
                 rotation="-180 0 0"
-                position="0 2.5 -0.5"
-                scale="1 1 1"
-                id="arrow1"
-                animation="property: position;dir: alternate; dur: 300;
-                                easing: easeInSine; loop: true; to: 0 3 -0.5"
-            >
-            </a-entity>
-            <a-entity
-                gltf-model="#arrow"
-                rotation="90 0 0"
-                position="0 1 -1.2"
+                position="-2 1 -1.2"
                 scale="0 0 0"
                 id="arrow2"
                 animation="property: position;dir: alternate; dur: 300;
                                 easing: easeInSine; loop: true; to: 0 1 -1.5"
             >
             </a-entity>
+            <a-text
+                value="第二步：请用六角扳手拆掉螺钉，拆开分杯模块前面板"
+                color="blue"
+                position="-2 1.1 -1"
+                rotation="-90 0 0"
+                scale="0 0 0"
+                id="text2"
+                event-set_click="_event:click;material.color:blue"
+            >
+            </a-text>
+            <!--第三步-->
+            <a-entity
+                gltf-model="#arrow"
+                rotation="-180 0 0"
+                position="-2 1 -1.2"
+                scale="0 0 0"
+                id="arrow3"
+                animation="property: position;dir: alternate; dur: 300;
+                                easing: easeInSine; loop: true; to: 0 1 -1.5"
+                >
+            </a-entity>
+            <a-text
+                value="第三步：将卡住的分杯管放平，点击Repeat"
+                color="blue"
+                position="-2 1.1 -1"
+                rotation="-90 0 0"
+                scale="0 0 0"
+                id="text3"
+                event-set_click="_event:click;material.color:blue"
+            >
+            </a-text>
+            
         </a-marker>
 
         <!-- Define the camera of the scene -->
@@ -128,8 +151,10 @@
         let box1 = document.getElementById('box1');
         let text1 = document.getElementById('text1');
         let text2 = document.getElementById('text2');
+        let text3 = document.getElementById('text3');
         let arrow1 = document.getElementById('arrow1');
         let arrow2 = document.getElementById('arrow2');
+        let arrow3 = document.getElementById('arrow3');
         let index=0
         domNext.addEventListener('click', function (params) {
             index+=1
@@ -138,6 +163,8 @@
             text1.setAttribute('scale', '0 0 0');
             arrow2.setAttribute('scale', '1 1 1'); 
             text2.setAttribute('scale', '1 1 1'); 
+            arrow3.setAttribute('scale', '0 0 0'); 
+            text3.setAttribute('scale', '0 0 0'); 
         });
         domPrev.addEventListener('click', function (params) {
             index-=1
